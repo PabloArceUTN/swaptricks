@@ -1,2 +1,12 @@
 # swaptricks
-This is an UTN project, This is a SPA trying to consume the Cambealo Api
+
+This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+version 0.15.1.
+
+## Build & development
+
+Run `grunt` for building and `grunt serve` for preview.
+
+## Testing
+
+Running `grunt test` will run the unit tests with karma.
