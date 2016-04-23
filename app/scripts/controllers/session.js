@@ -61,10 +61,20 @@ angular.module('swaptricksApp')
 
   // Execute the bad responce from the errorCallback functions
   function WrongFeedback(responce) {
-    if(responce.status == -1 || responce.status == 500)
-    alert("Problems... someting went wrong! try again later :(");
-    else
-    alert(responce.data.error);
+    if(responce.status == -1 || responce.status == 500){
+      alert("Problems... someting went wrong! try again later :(");
+    }else{
+      if (responce.data.error != undefined){
+        alert(responce.data.error);
+      }else{
+        var errors_stack="";
+        for (var insue_sent in responce.data) {
+          for (var i = 0; i < responce.data[insue_sent].length; i++)
+          errors_stack += insue_sent+" "+responce.data[insue_sent][i]+"\n";
+        }
+        alert(errors_stack);
+      }
+    }
   }
 
 });

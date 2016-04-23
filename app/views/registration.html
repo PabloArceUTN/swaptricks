@@ -14,8 +14,8 @@
     <input type="text" name="firstname" class="form-control" ng-model="user.firstname" />
   </div>
   <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" class="form-control" placeholder="password" ng-model="user.password" required />      
+    <label for="password">Password <span>(minimum is 8 characters)</span></label>
+    <input type="password" name="password" id="password" class="form-control" placeholder="password" ng-model="user.password" required />
     </div>
     <div class="form-actions">
       <button class="col-md-6" type="submit" class="btn btn-primary" ng-href="#/">create</button>
