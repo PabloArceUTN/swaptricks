@@ -8,7 +8,7 @@
 * Controller of the swaptricksApp
 */
 angular.module('swaptricksApp')
-.controller('SessionCtrl', function ($scope, $http, $location) {
+.controller('SessionCtrl', function ($scope, $http, $location, $rootScope) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
@@ -75,6 +75,21 @@ angular.module('swaptricksApp')
         alert(errors_stack);
       }
     }
+  }
+  // Check Token acces...
+  $rootScope.chekToken = function(){
+    if ((localStorage.token == undefined)||(localStorage.getItem('token') == "null")) {
+      $location.path('/');
+      return;
+    }
+    $http.get(`http://api.swapingzone.com:3000/check?token=${localStorage.token}`)
+    .then(function successCallback(response) {
+      console.log(response);
+    }, function errorCallback(response) {
+      console.log(response);
+      $location.path('/');
+      return;
+    });
   }
 
 });
