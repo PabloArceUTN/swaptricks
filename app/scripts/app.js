@@ -31,6 +31,11 @@ angular
         controller: 'SessionCtrl',
         controllerAs: 'registration'
       })
+      .when('/dashboard', {
+        templateUrl: 'views/dash.html',
+        controller: 'DashCtrl',
+        controllerAs: 'dashboard'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',

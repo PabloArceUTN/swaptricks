@@ -15,6 +15,9 @@ angular.module('swaptricksApp')
     'Karma'
   ];
 
+  function say() {
+    alert("hashajdhsjdhwdhsdhwidhszkdewidhjwkj");
+  }
   // User resgistration
   $scope.create = function(user){
     var data = {"username": user.username,
@@ -38,6 +41,7 @@ angular.module('swaptricksApp')
     $http.post('http://api.swapingzone.com:3000/login', data).then(function successCallback(responce){
       console.log(responce);
       localStorage.token = responce.data.token;
+      localStorage.type = responce.data.user;
       $location.url('/about');
     }, function errorCallback(responce){
       WrongFeedback(responce);
@@ -51,6 +55,7 @@ angular.module('swaptricksApp')
     .then(function successCallback(responce){
       console.log(responce);
       localStorage.token = null;
+      localStorage.type = null;
       alert(responce.data.message);
       $location.path('/');
     }, function errorCallback(responce){
