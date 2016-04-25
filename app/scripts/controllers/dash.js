@@ -16,17 +16,17 @@ angular.module('swaptricksApp')
   ];
 
 
-  $scope.loadTransfer = function(){
-    $http.get(`http://api.swapingzone.com:3000/check?token=${localStorage.token}`)
-    .then(function successCallback(response) {
-      console.log(response);
-    }, function errorCallback(response) {
-      console.log(response);
-      $location.path('/');
-      return;
-    });
-  }
-  $scope.loadTransfer();
+  // $scope.loadTransfer = function(){
+  //   $http.get(`http://api.swapingzone.com:3000/check?token=${localStorage.token}`)
+  //   .then(function successCallback(response) {
+  //     console.log(response);
+  //   }, function errorCallback(response) {
+  //     console.log(response);
+  //     $location.path('/');
+  //     return;
+  //   });
+  // }
+  // $scope.loadTransfer();
   // $rootScope.chekToken();
   // $rootScope.$emit("chekToken");
 });
