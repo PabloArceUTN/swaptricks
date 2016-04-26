@@ -17,6 +17,12 @@ angular.module('swaptricksApp')
   //Entyties
   $scope.items;
   $scope.myProducts;
+  //Selected product Entytie
+  $scope.productSelectedName = "Nachos";
+  $scope.productSelectedDescription = "Nachos";
+  $scope.productSelectedImage = "http://briansguitars.com/wp-content/uploads/2013/03/PRS-Slider-609x359.png";
+  $scope.productSelectedOwn = false;
+  $scope.productSelectedDisabled = " ";
   //Loader function
   $scope.loadProducts = function(id) {
     if (!id)
@@ -38,6 +44,30 @@ angular.module('swaptricksApp')
   $scope.loadProducts(false);
   $scope.loadProducts(true);
 
+  //Set products Entyties
+  $scope.setTradeProduct = function(pProduct){
+    console.log(pProduct);
+    $scope.productSelectedName = pProduct.name;
+    $scope.productSelectedDescription = pProduct.description;
+    // $scope.productSelectedImage = pProduct.
+    //Can't trade with it self
+    if (pProduct.user_id==localStorage.type) {
+      $scope.productSelectedOwn = true;
+      $scope.productSelectedDisabled = "disabled";
+    }else {
+      $scope.productSelectedOwn = false;
+      $scope.productSelectedDisabled = " ";
+    }
+  }
+
+  //TRADE!
+  $scope.trade = function() {
+    if (!$scope.productSelectedOwn) {
+      //Proces  the trade
+      console.log("trade");
+    }
+    console.log("nope");
+  }
   // $scope.loadProducts();
   // $rootScope.chekToken();
   // $rootScope.$emit("chekToken");
