@@ -36,7 +36,7 @@ angular.module('swaptricksApp')
     .then(function successCallback(responce){
       alert("Great! The deal is waiting... you will notify the state of this");
       console.log(responce);
-      window.location.reload();
+      angular.element('#myModal').modal('hide');
     }, function errorCallback(responce){
       alert("Upps... someting went wrong, try again");
       console.log(responce);

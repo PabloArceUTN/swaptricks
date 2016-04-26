@@ -8,12 +8,21 @@
 * Controller of the swaptricksApp
 */
 angular.module('swaptricksApp')
-.controller('ProductCtrl', function ($scope, $http, $location, $rootScope) {
+.controller('ProductCtrl', function ($scope, $http, $location, $rootScope, Authtoken) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
+
+  //AUTHENTICATION Acces
+  $scope.inspectSession =  Authtoken.query(function() {
+    console.log('Acces');
+  }, function(error) {
+    console.log(error);
+    window.location = "http://localhost:9000/#/?reload";
+  });
+
   //Entyties
   $scope.items;
   $scope.myProducts;
