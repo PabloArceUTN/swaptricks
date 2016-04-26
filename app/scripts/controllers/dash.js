@@ -14,7 +14,16 @@ angular.module('swaptricksApp')
     'AngularJS',
     'Karma'
   ];
-
+  //TRADE!
+  $scope.trade = function(pSelected) {
+    console.log(sel);
+    if (!$scope.productSelectedOwn) {
+      //Proces  the trade
+      console.log("trade");
+    }
+    console.log("nope");
+    console.log("pass");
+  }
 
   // $scope.loadTransfer = function(){
   //   $http.get(`http://api.swapingzone.com:3000/check?token=${localStorage.token}`)

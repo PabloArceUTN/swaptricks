@@ -36,15 +36,15 @@ angular
         controller: 'DashCtrl',
         controllerAs: 'dashboard'
       })
-      .when('/products', {
-        templateUrl: 'views/products.html',
-        controller: 'ProductCtrl',
-        controllerAs: 'product'
-      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      })
+      .when('/products', {
+        templateUrl: 'views/products.html',
+        controller: 'ProductCtrl',
+        controllerAs: 'product'
       })
       .otherwise({
         redirectTo: '/'
