@@ -31,13 +31,16 @@
               {{productSelected.description}}
           </p>
           <h3>Select your product</h3>
-          <select class="form-control" name="" ng-model="selected_product" ng-options='pname as product.name for product in myProducts'>
-            <option><span>pname</span></option>
+          <select class="form-control" ng-options='product as product.name for product in myProducts' ng-model="selectedP">
+            <!-- <option value="" ng-if="selected">Select something to remove me.</option> -->
           </select>
+          <pre>
+            {{selectedP.description}}
+          </pre>
         </div><!--  item as item.label for item in items track by item.id -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary {{productSelectedDisabled}}" ng-click="trade()">Try deal</button>
+        <div class="modal-footer" ng-controller="TransferCtrl">
+          <button type="button" class="btn btn-default " data-dismiss="modal" >Close</button>
+          <button type="button" class="btn btn-primary {{productSelectedDisabled}}" ng-click="trade(selectedP)">Try deal</button>
         </div>
       </div>
     </div>

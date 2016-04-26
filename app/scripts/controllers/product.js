@@ -56,15 +56,6 @@ angular.module('swaptricksApp')
       $scope.productSelectedDisabled = " ";
     }
   }
-
-  //TRADE!
-  $scope.trade = function() {
-    if (!$scope.productSelectedOwn) {
-      //Proces  the trade
-      console.log("trade");
-    }
-    console.log("nope");
-  }
   // $scope.loadProducts();
   // $rootScope.chekToken();
   // $rootScope.$emit("chekToken");
