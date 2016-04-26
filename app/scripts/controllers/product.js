@@ -17,6 +17,10 @@ angular.module('swaptricksApp')
   //Entyties
   $scope.items;
   $scope.myProducts;
+  //Selected product Entytie
+  $scope.productSelected = {};
+  $scope.productSelectedOwn = false;
+  $scope.productSelectedDisabled = " ";
   //Loader function
   $scope.loadProducts = function(id) {
     if (!id)
@@ -38,6 +42,20 @@ angular.module('swaptricksApp')
   $scope.loadProducts(false);
   $scope.loadProducts(true);
 
+  //Set products Entyties
+  $scope.setTradeProduct = function(pProduct){
+    console.log(pProduct);
+    $scope.productSelected = pProduct;
+    // $scope.productSelectedImage = pProduct.
+    //Can't trade with it self
+    if (pProduct.user_id==localStorage.type) {
+      $scope.productSelectedOwn = true;
+      $scope.productSelectedDisabled = "disabled";
+    }else {
+      $scope.productSelectedOwn = false;
+      $scope.productSelectedDisabled = " ";
+    }
+  }
   // $scope.loadProducts();
   // $rootScope.chekToken();
   // $rootScope.$emit("chekToken");
