@@ -38,6 +38,18 @@ angular.module('swaptricksApp')
       console.log(response);
     });
   }
+
+  $scope.deleteProduct = function(product){
+    var url = `http://api.swapingzone.com:3000/products/${product}?token=${localStorage.token}`;
+    $http.delete(url).then(function successCallback(responce){
+      alert("Congrats...product deleted :)");
+      console.log(responce);
+      $location.path('/');
+    }, function errorCallback(responce){
+      WrongFeedback(responce);
+      console.log(responce);
+    });
+  }
   //Execute loader function
   $scope.loadProducts(false);
   $scope.loadProducts(true);
