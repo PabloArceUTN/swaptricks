@@ -8,16 +8,13 @@
 * Controller of the swaptricksApp
 */
 angular.module('swaptricksApp')
-.controller('SessionCtrl', function ($scope, $http, $location, $rootScope) {
+.controller('SessionCtrl', function ($rootScope, $scope, $http, $location) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
 
-  function say() {
-    alert("hashajdhsjdhwdhsdhwidhszkdewidhjwkj");
-  }
   // User resgistration
   $scope.create = function(user){
     var data = {"username": user.username,
@@ -32,6 +29,7 @@ angular.module('swaptricksApp')
       WrongFeedback(responce);
       console.log(responce);
     });
+
   }
 
   // User login
@@ -42,7 +40,7 @@ angular.module('swaptricksApp')
       console.log(responce);
       localStorage.token = responce.data.token;
       localStorage.type = responce.data.user;
-      $location.url('/about');
+      window.location = "http://localhost:9000/#/about";
     }, function errorCallback(responce){
       WrongFeedback(responce);
       console.log(responce);
@@ -57,7 +55,9 @@ angular.module('swaptricksApp')
       localStorage.token = null;
       localStorage.type = null;
       alert(responce.data.message);
-      $location.path('/');
+      // $location.path('/');
+      // window.location.replace(window.location.href+'?reload');
+      window.location = "http://localhost:9000/#/?reload";
     }, function errorCallback(responce){
       WrongFeedback(responce);
       console.log(responce);
@@ -80,21 +80,6 @@ angular.module('swaptricksApp')
         alert(errors_stack);
       }
     }
-  }
-  // Check Token acces...
-  $rootScope.chekToken = function(){
-    if ((localStorage.token == undefined)||(localStorage.getItem('token') == "null")) {
-      $location.path('/');
-      return;
-    }
-    $http.get(`http://api.swapingzone.com:3000/check?token=${localStorage.token}`)
-    .then(function successCallback(response) {
-      console.log(response);
-    }, function errorCallback(response) {
-      console.log(response);
-      $location.path('/');
-      return;
-    });
   }
 
 });

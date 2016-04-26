@@ -8,13 +8,17 @@
 * Controller of the swaptricksApp
 */
 angular.module('swaptricksApp')
-.controller('AboutCtrl', function ($scope, $location, $rootScope) {
+.controller('AboutCtrl', function ($scope, Authtoken, $location, $rootScope) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
 
-  // $rootScope.chekToken();
-  // $rootScope.$emit("chekToken");
+  $scope.inspectSession =  Authtoken.query(function() {
+    console.log('I am done loading products...');
+  }, function(error) {
+    $location.url() = "http://localhost:9000/#/?reload";
+  });
+  
 });
