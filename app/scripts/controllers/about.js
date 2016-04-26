@@ -18,7 +18,7 @@ angular.module('swaptricksApp')
   $scope.inspectSession =  Authtoken.query(function() {
     console.log('I am done loading products...');
   }, function(error) {
-    $location.url() = "http://localhost:9000/#/?reload";
+    window.location = "http://localhost:9000/#/?reload";
   });
-  
+
 });
