@@ -36,6 +36,11 @@ angular
         controller: 'DashCtrl',
         controllerAs: 'dashboard'
       })
+      .when('/myproducts', {
+        templateUrl: 'views/myproducts.html',
+        controller: 'ProductCtrl',
+        controllerAs: 'myproducts'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
