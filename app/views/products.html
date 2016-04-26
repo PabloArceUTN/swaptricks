@@ -23,12 +23,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">{{productSelectedName}}</h4>
+          <h4 class="modal-title" id="myModalLabel">{{productSelected.name}}</h4>
         </div>
         <div class="modal-body">
-          <img class="img-responsive img-rounded center-block" src="{{productSelectedImage}}" alt="selected product" />
+          <img class="img-responsive img-rounded center-block" src="http://briansguitars.com/wp-content/uploads/2013/03/PRS-Slider-609x359.png" alt="selected product" />
           <p>
-              {{productSelectedDescription}}
+              {{productSelected.description}}
           </p>
           <h3>Select your product</h3>
           <select class="form-control" name="" ng-model="selected_product" ng-options='pname as product.name for product in myProducts'>
@@ -37,7 +37,7 @@
         </div><!--  item as item.label for item in items track by item.id -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary {{productSelectedDisabled}}" ng-disabled="productSelectedOwn == localStorage.type" ng-click="trade()">Try deal</button>
+          <button type="button" class="btn btn-primary {{productSelectedDisabled}}" ng-click="trade()">Try deal</button>
         </div>
       </div>
     </div>

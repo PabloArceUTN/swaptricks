@@ -18,9 +18,7 @@ angular.module('swaptricksApp')
   $scope.items;
   $scope.myProducts;
   //Selected product Entytie
-  $scope.productSelectedName = "Nachos";
-  $scope.productSelectedDescription = "Nachos";
-  $scope.productSelectedImage = "http://briansguitars.com/wp-content/uploads/2013/03/PRS-Slider-609x359.png";
+  $scope.productSelected = {};
   $scope.productSelectedOwn = false;
   $scope.productSelectedDisabled = " ";
   //Loader function
@@ -47,8 +45,7 @@ angular.module('swaptricksApp')
   //Set products Entyties
   $scope.setTradeProduct = function(pProduct){
     console.log(pProduct);
-    $scope.productSelectedName = pProduct.name;
-    $scope.productSelectedDescription = pProduct.description;
+    $scope.productSelected = pProduct;
     // $scope.productSelectedImage = pProduct.
     //Can't trade with it self
     if (pProduct.user_id==localStorage.type) {
