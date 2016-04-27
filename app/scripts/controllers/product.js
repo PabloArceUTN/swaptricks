@@ -40,20 +40,58 @@ angular.module('swaptricksApp')
   }
 
   $scope.deleteProduct = function(product){
-    var url = `http://api.swapingzone.com:3000/products/${product}?token=${localStorage.token}`;
+    var data = {
+     "id": product.id
+    };
+    alert("Delete "+ product.id);
+    var url = `http://api.swapingzone.com:3000/products?token=${localStorage.token}`, data;
     $http.delete(url).then(function successCallback(responce){
       alert("Congrats...product deleted :)");
       console.log(responce);
-      $location.path('/');
+      window.location = "http://localhost:9000/#/myproducts";
     }, function errorCallback(responce){
       WrongFeedback(responce);
       console.log(responce);
     });
   }
+/////////////////////
+$scope.create = function(product){
+  var data = {"name": product.name,
+  "description": product.description,
+  "user_id": localStorage.type,
+  "active": product.active};
+ //alert(product.id+" "+product.name+" "+product.description);
+  //make the Call
+  $http.post(`http://api.swapingzone.com:3000/products?token=${localStorage.token}`, data).then(function successCallback(responce){
+    alert("Congrats... now you are create a product :)");
+    console.log(responce);
+    window.location = "http://localhost:9000/#/myproducts#";
+  }, function errorCallback(responce){
+    WrongFeedback(responce);
+    console.log(responce);
+  });
+}
+  //////////////////////
+  $scope.update = function(product){
+    var data = {"name": product.name,
+     "id": product.id,
+    "description": product.description,
+    "active": product.active};
+   alert(product.id+" "+product.name+" "+product.description);
+    //make the Call
+    $http.put(`http://api.swapingzone.com:3000/products?token=${localStorage.token}`, data).then(function successCallback(responce){
+      alert("Congrats... now you are update a product :)");
+      console.log(responce);
+      window.location = "http://localhost:9000/#/myproducts";
+    }, function errorCallback(responce){
+      WrongFeedback(responce);
+      console.log(responce);
+    });
+  }
+  ///////////////////////
   //Execute loader function
   $scope.loadProducts(false);
   $scope.loadProducts(true);
-
   //Set products Entyties
   $scope.setTradeProduct = function(pProduct){
     console.log(pProduct);
