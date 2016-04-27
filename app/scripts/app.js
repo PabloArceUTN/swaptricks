@@ -31,11 +31,6 @@ angular
         controller: 'SessionCtrl',
         controllerAs: 'registration'
       })
-      .when('/dashboard', {
-        templateUrl: 'views/dash.html',
-        controller: 'DashCtrl',
-        controllerAs: 'dashboard'
-      })
       .when('/myproducts', {
         templateUrl: 'views/myproducts.html',
         controller: 'ProductCtrl',
@@ -50,6 +45,11 @@ angular
         templateUrl: 'views/products.html',
         controller: 'ProductCtrl',
         controllerAs: 'product'
+      })
+      .when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'TransferCtrl',
+        controllerAs: 'transfers'
       })
       .otherwise({
         redirectTo: '/'
