@@ -1,3 +1,4 @@
+<header ng-include="'views/private-nav.html'"></header>
 <div class="jumbotron">
   <h1>List of Products</h1>
 </div>
@@ -40,7 +41,7 @@
         </div><!--  item as item.label for item in items track by item.id -->
         <div class="modal-footer" ng-controller="TransferCtrl">
           <button type="button" class="btn btn-default " data-dismiss="modal" >Close</button>
-          <button type="button" class="btn btn-primary {{productSelectedDisabled}}" ng-click="trade(selectedP)">Try deal</button>
+          <button type="button" class="btn btn-primary {{productSelectedDisabled}}" ng-click="trade(selectedP)" >Try deal</button>
         </div>
       </div>
     </div>
