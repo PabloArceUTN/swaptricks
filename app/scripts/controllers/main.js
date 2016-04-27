@@ -8,7 +8,7 @@
 * Controller of the swaptricksApp
 */
 angular.module('swaptricksApp')
-.controller('MainCtrl', function ($scope) {
+.controller('MainCtrl', function ($scope, Authtoken) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
@@ -19,4 +19,10 @@ angular.module('swaptricksApp')
     window.location.replace("/#/");
     window.location.reload();
   }
+
+  //AUTHENTICATION Acces
+  $scope.inspectSession =  Authtoken.query(function() {
+    window.location = "http://localhost:9000/#/dashboard";
+  }, function(error) {
+  });
 });
