@@ -8,27 +8,28 @@
 * Controller of the swaptricksApp
 */
 angular.module('swaptricksApp')
-.controller('TransferCtrl', function ($scope, $http, $location) {
+.controller('TransferCtrl', function ($scope, $http, $location, $rootScope, Authtoken, $document) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
-console.log("Executing TransferCtrl");
+  console.log("Executing TransferCtrl");
   // Trade Entyties
   $scope.userTransfers;
-  console.log($scope.userTransfers);
+
   //Load user transfers
-  $scope.loadTransfers = function() {
+  $scope.chargeTransfers = function() {
     $http.get(`http://api.swapingzone.com:3000/transfers?token=${localStorage.token}`)
     .then(function successCallback(responce){
       console.log(responce);
-      $scope.userTransfers = responce;
+      $scope.userTransfers = responce.data;
     }, function errorCallback(responce){
       alert("Upps... someting went wrong, try again");
       console.log(responce);
     });
   }
+
   //TRADE!
   $scope.trade = function(pSelected) {
     if (pSelected == undefined || pSelected == null) {
@@ -58,8 +59,7 @@ console.log("Executing TransferCtrl");
     });
   }
 
-
   //Execute loadTransfer function
-  $scope.loadTransfers();
-console.log($scope.userTransfers);
+  $scope.chargeTransfers();
+
 });

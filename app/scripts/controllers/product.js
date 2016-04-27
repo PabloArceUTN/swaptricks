@@ -94,6 +94,17 @@ angular.module('swaptricksApp')
       console.log(responce);
     });
   }
+
+  //Select an especific product
+  $scope.showProduct = function(productId) {
+    $http.get(`http://api.swapingzone.com:3000/products/${productId}?token=${localStorage.token}`)
+    .then(function successCallback(response) {
+      console.log(response);
+      return response.data.name;
+    }, function errorCallback(response) {
+      console.log(response);
+    });
+  }
   ///////////////////////
   //Execute loader function
   $scope.loadProducts(false);
