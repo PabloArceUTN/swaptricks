@@ -1,0 +1,35 @@
+<header ng-include="'views/private-nav.html'"></header>
+<div class="jumbotron" >
+  <h1>Deals</h1>
+  <h5>Some people want trade with you...</h5>
+</div>
+<div class="row marketing">
+  <table class='table table-striped table-bordered table-hover table-condensed' ng-controller="TransferCtrl">
+    <thead>
+      <tr>
+        <th>Your Wanted Product</th>
+        <th>Product Offered</th>
+        <th>Status</th>
+        <th>Cancel</th>
+        <th>Accept</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, value) in intoTransfers">
+        <td>{{value.product_req_name}}</td>
+        <td>{{value.product_offer_name}}</td>
+        <td>{{value.state}}</td>
+        <td class="text-center">
+          <button type="button" class="btn btn-danger" ng-click="deleteTransfer(value)">
+            Decline
+          </button>
+        </td>
+        <td class="text-center">
+          <button type="button" class="btn btn-success" ng-click="closeDeal(value)">
+            Make Deal!
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

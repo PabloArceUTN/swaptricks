@@ -49,16 +49,17 @@ angular.module('swaptricksApp')
   }
   // Delete product from my ptoducts
   $scope.deleteProduct = function(product){
-    alert("Delete "+ product.id);
-    var url = `http://api.swapingzone.com:3000/products/${product.id}?token=${localStorage.token}`;
-    $http.delete(url).then(function successCallback(responce){
-      alert("Congrats...product deleted :)");
-      console.log(responce);
-      window.location = "http://localhost:9000/#/myproducts#";
-    }, function errorCallback(responce){
-      WrongFeedback(responce);
-      console.log(responce);
-    });
+    var res = confirm("Are you sure?");
+    if (res) {
+      var url = `http://api.swapingzone.com:3000/products/${product.id}?token=${localStorage.token}`;
+      $http.delete(url).then(function successCallback(responce){
+        console.log(responce);
+        window.location = "http://localhost:9000/#/myproducts#";
+      }, function errorCallback(responce){
+        WrongFeedback(responce);
+        console.log(responce);
+      });
+    }
   }
   /////////////////////
   $scope.create = function(product){

@@ -51,6 +51,12 @@ angular
         controller: 'TransferCtrl',
         controllerAs: 'transfers'
       })
+
+      .when('/deals', {
+        templateUrl: 'views/deals.html',
+        controller: 'TransferCtrl',
+        controllerAs: 'transfers'
+      })
       .otherwise({
         redirectTo: '/'
       });
