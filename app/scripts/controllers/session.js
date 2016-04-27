@@ -41,7 +41,7 @@ angular.module('swaptricksApp')
       console.log(responce);
       localStorage.token = responce.data.token;
       localStorage.type = responce.data.user;
-      window.location = "http://localhost:9000/#/about";
+      window.location = "http://localhost:9000/#/dashboard";
     }, function errorCallback(responce){
       WrongFeedback(responce);
       console.log(responce);
@@ -67,6 +67,10 @@ angular.module('swaptricksApp')
 
   // Execute the bad responce from the errorCallback functions
   function WrongFeedback(responce) {
+    if (responce.status == 401) {
+      console.log("Unauthorized");
+      return;
+    }
     if(responce.status == -1 || responce.status == 500){
       alert("Problems... someting went wrong! try again later :(");
     }else{
@@ -82,5 +86,6 @@ angular.module('swaptricksApp')
       }
     }
   }
+
 
 });
