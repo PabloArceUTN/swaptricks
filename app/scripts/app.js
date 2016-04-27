@@ -31,15 +31,10 @@ angular
         controller: 'SessionCtrl',
         controllerAs: 'registration'
       })
-      .when('/myproducts', {
-        templateUrl: 'views/myproducts.html',
-        controller: 'ProductCtrl',
-        controllerAs: 'myproducts'
-      })
-      .when('/credentials', {
-        templateUrl: 'views/credentials.html',
-        controller: 'UserCtrl',
-        controllerAs: 'user'
+      .when('/dashboard', {
+        templateUrl: 'views/dash.html',
+        controller: 'DashCtrl',
+        controllerAs: 'dashboard'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -50,11 +45,6 @@ angular
         templateUrl: 'views/products.html',
         controller: 'ProductCtrl',
         controllerAs: 'product'
-      })
-      .when('/dashboard', {
-        templateUrl: 'views/dashboard.html',
-        controller: 'TransferCtrl',
-        controllerAs: 'transfers'
       })
       .otherwise({
         redirectTo: '/'

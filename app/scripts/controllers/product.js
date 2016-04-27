@@ -8,28 +8,15 @@
 * Controller of the swaptricksApp
 */
 angular.module('swaptricksApp')
-.controller('ProductCtrl', function ($scope, $http, $location, $rootScope, Authtoken) {
+.controller('ProductCtrl', function ($scope, $http, $location, $rootScope) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
-
-  //AUTHENTICATION Acces
-  $scope.inspectSession =  Authtoken.query(function() {
-    console.log('Acces');
-  }, function(error) {
-    console.log(error);
-    window.location = "http://localhost:9000/#/?reload";
-  });
-
   //Entyties
   $scope.items;
   $scope.myProducts;
-  //Selected product Entytie
-  $scope.productSelected = {};
-  $scope.productSelectedOwn = false;
-  $scope.productSelectedDisabled = " ";
   //Loader function
   $scope.loadProducts = function(id) {
     if (!id)
@@ -47,98 +34,11 @@ angular.module('swaptricksApp')
       console.log(response);
     });
   }
-
-  $scope.deleteProduct = function(product){
-    var url = `http://api.swapingzone.com:3000/products/${product.id}?token=${localStorage.token}`;
-    $http.delete(url).then(function successCallback(responce){
-      alert("Congrats...product deleted :)");
-      console.log(responce);
-      window.location = "http://localhost:9000/#/myproducts#";
-    }, function errorCallback(responce){
-      WrongFeedback(responce);
-      console.log(responce);
-    });
-  }
-  /////////////////////
-
-  $scope.createProduct = function(product){
-    var data = {"name": product.name,
-    "description": product.description,
-    "url_image": product.url_image,
-    "user_id": localStorage.type,
-    "active": product.active};
-    //make the Call
-    $http.post(`http://api.swapingzone.com:3000/products?token=${localStorage.token}`, data).then(function successCallback(responce){
-      alert("Congrats... now you are create a product :)");
-      console.log(responce);
-      angular.element('#myModalcreate').modal('hide');
-      $scope.loadProducts(true);
-    }, function errorCallback(responce){
-      // WrongFeedback(responce);
-      console.log(responce);
-    });
-  }
-  //////////////////////
-  $scope.updateProduct = function(product){
-    var data = {"name": product.name,
-    "description": product.description,
-    "active": product.active,
-    "user_id": localStorage.type};
-    //make the Call
-    $http.put(`http://api.swapingzone.com:3000/products/${product.id}?token=${localStorage.token}`, data).then(function successCallback(responce){
-      alert("Congrats... now you are update a product :)");
-      console.log(responce);
-      angular.element('#myModaledit').modal('hide');
-      $scope.loadProducts(true);
-    }, function errorCallback(responce){
-      WrongFeedback(responce);
-      console.log(responce);
-    });
-  }
-
-  //Select an especific product
-  $scope.showProduct = function(productId) {
-    $http.get(`http://api.swapingzone.com:3000/products/${productId}?token=${localStorage.token}`)
-    .then(function successCallback(response) {
-      console.log(response);
-      return response.data.name;
-    }, function errorCallback(response) {
-      console.log(response);
-    });
-  }
-  ///////////////////////
   //Execute loader function
   $scope.loadProducts(false);
   $scope.loadProducts(true);
-  //Set products Entyties
-  $scope.setTradeProduct = function(pProduct){
-    console.log(pProduct);
-    $scope.productSelected = pProduct;
-    // $scope.productSelectedImage = pProduct.
-    //Can't trade with it self
-    if (pProduct.user_id==localStorage.type) {
-      $scope.productSelectedOwn = true;
-      $scope.productSelectedDisabled = "disabled";
-    }else {
-      $scope.productSelectedOwn = false;
-      $scope.productSelectedDisabled = " ";
-    }
-  }
-  function WrongFeedback(responce) {
-    if(responce.status == -1 || responce.status == 500){
-      alert("Problems... someting went wrong! try again later :(");
-    }else{
-      if (responce.data.error != undefined){
-        alert(responce.data.error);
-      }else{
-        var errors_stack="";
-        var i = 0;
-        for (var insue_sent in responce.data) {
-          errors_stack += `Thi product can´t be processed. ${responce.data[i].error} \n`;
-          i++;
-        }
-        alert(errors_stack);
-      }
-    }
-  }
+
+  // $scope.loadProducts();
+  // $rootScope.chekToken();
+  // $rootScope.$emit("chekToken");
 });
