@@ -62,9 +62,11 @@ angular.module('swaptricksApp')
     }
   }
   /////////////////////
-  $scope.create = function(product){
+
+  $scope.createProduct = function(product){
     var data = {"name": product.name,
     "description": product.description,
+    "url_image": product.url_image,
     "user_id": localStorage.type,
     "active": product.active};
     //make the Call
@@ -79,7 +81,7 @@ angular.module('swaptricksApp')
     });
   }
   //////////////////////
-  $scope.update = function(product){
+  $scope.updateProduct = function(product){
     var data = {"name": product.name,
     "description": product.description,
     "active": product.active,

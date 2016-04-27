@@ -36,6 +36,11 @@ angular
         controller: 'ProductCtrl',
         controllerAs: 'myproducts'
       })
+      .when('/credentials', {
+        templateUrl: 'views/credentials.html',
+        controller: 'UserCtrl',
+        controllerAs: 'user'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',

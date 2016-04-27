@@ -1,4 +1,3 @@
-<header ng-include="'views/private-nav.html'"></header>
 <div class="jumbotron">
   <h1>List my Products</h1>
 </div>
@@ -8,7 +7,6 @@
       <tr ng-repeat="(key, value) in myProducts">
         <td><span>{{value.name}}</span></td>
         <td>{{value.description}}</td>
-        <td>{{value.active}}</td>
         <td class="text-center">
           <button type="button" class=" glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#myModal" ng-click="setTradeProduct(value)">
           </button>
@@ -35,7 +33,6 @@
           </div>
           <div class="modal-body">
             <img class="img-responsive img-rounded center-block" src="{{productSelected.url_img}}" alt="selected product" />
-            <div ng-style="{'background-image': 'url({{ productSelected.url_img}})'}">...</div>
             <p>
               {{productSelected.description}}
             </p>
@@ -44,6 +41,7 @@
       </div>
     </div>
 
+    <<<<<<< HEAD
     <div class="modal fade" id="myModaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -72,39 +70,95 @@
               </form>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+          =======
+          <div class="modal fade" id="myModaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">{{productSelected.name}}</h4>
+                  <div class="form">
+                    <form role="form" ng-submit="updateProduct(productSelected);" >
+                      <div class="form-group">
+                        <label for="email">Name:</label>
+                        <input type="text" name="name" ng-model="productSelected.name" value="{{productSelected.name}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Description:</label>
+                        <input type="text" ng-model="productSelected.description" name="description" value="{{productSelected.description}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Active:</label>
+                        <input type="checkbox" name="name" ng-model="productSelected.active" value="{{productSelected.active}}">
+                      </div>
+                      <div class="actions">
+                        <button  type="submit" ng-href="#/" class="btn btn-primary btn-block">
+                          <span class="glyphicon glyphicon-floppy-disk"></span>
+                        </button>
+                      </div>
+                    </form>
+                    >>>>>>> refs/remotes/origin/development
+                  </div>
+                </div>
+              </div>
 
-    <div class="modal fade" id="myModalcreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Create Product</h4>
-            <div class="form">
-              <form role="form" ng-submit="create(product);" >
-                <div class="form-group">
-                  <label for="email">Name:</label>
-                  <input class="form-control" type="text" name="name" ng-model="product.name" >
-                </div>
-                <div class="form-group">
-                  <label for="email">Description:</label>
-                  <input class="form-control"type="text" ng-model="product.description" name="description" >
-                </div>
-                <div class="form-group">
-                  <label for="email">Put your product active</label>
-                  <input class="form-control" type="checkbox" name="name" ng-model="product.active" >
-                </div>
+              <<<<<<< HEAD
+              <div class="modal fade" id="myModalcreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Create Product</h4>
+                      <div class="form">
+                        <form role="form" ng-submit="create(product);" >
+                          <div class="form-group">
+                            <label for="email">Name:</label>
+                            <input class="form-control" type="text" name="name" ng-model="product.name" >
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Description:</label>
+                            <input class="form-control"type="text" ng-model="product.description" name="description" >
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Put your product active</label>
+                            <input class="form-control" type="checkbox" name="name" ng-model="product.active" >
+                          </div>
+                          =======
+                          <div class="modal fade" id="myModalcreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog modal-lg" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="myModalLabel">Create Product</h4>
+                                  <div class="form">
+                                    <form role="form" ng-submit="createProduct(product);" >
+                                      <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <input  id="name" type="text" name="name" ng-model="product.name" >
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="des">Description:</label>
+                                        <input  id="des" type="text" ng-model="product.description" name="description" >
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="img">Image:</label>
+                                        <input name="url_img" class="button" id="img" type="file" ng-model="product.url_img">
+                                      </div>
 
-                <div class="actions">
-                  <button  type="submit" ng-href="#/" class="btn btn-primary btn-block">
-                    <span class="glyphicon glyphicon-floppy-disk"></span>
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                                      <div class="form-group">
+                                        <label for="check">Active:</label>
+                                        <input  id="check" type="checkbox" name="name" ng-model="product.active" >
+                                      </div>
+                                      >>>>>>> refs/remotes/origin/development
+
+                                      <div class="actions">
+                                        <button  type="submit" ng-href="#/" class="btn btn-primary btn-block">
+                                          <span class="glyphicon glyphicon-floppy-disk"></span>
+                                        </button>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
