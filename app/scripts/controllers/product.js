@@ -73,7 +73,7 @@ angular.module('swaptricksApp')
       angular.element('#myModalcreate').modal('hide');
       $scope.loadProducts(true);
     }, function errorCallback(responce){
-      WrongFeedback(responce);
+      // WrongFeedback(responce);
       console.log(responce);
     });
   }
@@ -112,7 +112,21 @@ angular.module('swaptricksApp')
       $scope.productSelectedDisabled = " ";
     }
   }
-  // $scope.loadProducts();
-  // $rootScope.chekToken();
-  // $rootScope.$emit("chekToken");
+  function WrongFeedback(responce) {
+    if(responce.status == -1 || responce.status == 500){
+      alert("Problems... someting went wrong! try again later :(");
+    }else{
+      if (responce.data.error != undefined){
+        alert(responce.data.error);
+      }else{
+        var errors_stack="";
+        var i = 0;
+        for (var insue_sent in responce.data) {
+          errors_stack += `Thi product can´t be processed. ${responce.data[i].error} \n`;
+          i++;
+        }
+        alert(errors_stack);
+      }
+    }
+  }
 });

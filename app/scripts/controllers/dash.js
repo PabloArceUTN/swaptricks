@@ -8,34 +8,18 @@
 * Controller of the swaptricksApp
 */
 angular.module('swaptricksApp')
-.controller('DashCtrl', function ($scope, $http) {
+.controller('DashCtrl', function ($scope, $http, Authtoken) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
   //TRADE!
-  $scope.trade = function(pSelected) {
-    console.log(sel);
-    if (!$scope.productSelectedOwn) {
-      //Proces  the trade
-      console.log("trade");
-    }
-    console.log("nope");
-    console.log("pass");
-  }
-
-  // $scope.loadTransfer = function(){
-  //   $http.get(`http://api.swapingzone.com:3000/check?token=${localStorage.token}`)
-  //   .then(function successCallback(response) {
-  //     console.log(response);
-  //   }, function errorCallback(response) {
-  //     console.log(response);
-  //     $location.path('/');
-  //     return;
-  //   });
-  // }
-  // $scope.loadTransfer();
-  // $rootScope.chekToken();
-  // $rootScope.$emit("chekToken");
+  //AUTHENTICATION Acces
+  $scope.inspectSession =  Authtoken.query(function() {
+    console.log('Acces');
+  }, function(error) {
+    console.log(error);
+    window.location = "http://localhost:9000/#/?reload";
+  });
 });
