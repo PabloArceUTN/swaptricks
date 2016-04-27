@@ -59,6 +59,18 @@ angular.module('swaptricksApp')
     });
   }
 
+  // Delete transfer
+  $scope.deleteTransfer = function(pTransfer){
+    var url = `http://api.swapingzone.com:3000/transfers/${pTransfer.id}?token=${localStorage.token}`;
+    $http.delete(url).then(function successCallback(responce){
+      alert("Deal Broken");
+      console.log(responce);
+      window.location = "http://localhost:9000/#/dashboard#";
+    }, function errorCallback(responce){
+      alert("Upps... someting went wrong, try again");
+    });
+  }
+
   //Execute loadTransfer function
   $scope.chargeTransfers();
 
