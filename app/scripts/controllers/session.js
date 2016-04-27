@@ -19,7 +19,8 @@ angular.module('swaptricksApp')
   $scope.create = function(user){
     var data = {"username": user.username,
     "password": user.password,
-    "firstname": user.firstname};
+    "firstname": user.firstname,
+    "email": user.email};
     //make the Call
     $http.post('http://api.swapingzone.com:3000/users', data).then(function successCallback(responce){
       alert("Congrats... now you are part of Swapingtricks :)");
