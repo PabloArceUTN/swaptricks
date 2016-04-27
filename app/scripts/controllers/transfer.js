@@ -14,6 +14,21 @@ angular.module('swaptricksApp')
     'AngularJS',
     'Karma'
   ];
+console.log("Executing TransferCtrl");
+  // Trade Entyties
+  $scope.userTransfers;
+  console.log($scope.userTransfers);
+  //Load user transfers
+  $scope.loadTransfers = function() {
+    $http.get(`http://api.swapingzone.com:3000/transfers?token=${localStorage.token}`)
+    .then(function successCallback(responce){
+      console.log(responce);
+      $scope.userTransfers = responce;
+    }, function errorCallback(responce){
+      alert("Upps... someting went wrong, try again");
+      console.log(responce);
+    });
+  }
   //TRADE!
   $scope.trade = function(pSelected) {
     if (pSelected == undefined || pSelected == null) {
@@ -43,17 +58,8 @@ angular.module('swaptricksApp')
     });
   }
 
-  //Load user transfers
-  $scope.loadTransfers = function() {
-    $http.get(`http://api.swapingzone.com:3000/transfers?token=${localStorage.token}`)
-    .then(function successCallback(responce){
-      alert("Great! The deal is waiting... you will notify the state of this");
-      console.log(responce);
-      angular.element('#myModal').modal('hide');
-    }, function errorCallback(responce){
-      alert("Upps... someting went wrong, try again");
-      console.log(responce);
-    });
-  }
 
+  //Execute loadTransfer function
+  $scope.loadTransfers();
+console.log($scope.userTransfers);
 });
