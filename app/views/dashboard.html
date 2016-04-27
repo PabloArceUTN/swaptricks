@@ -1,16 +1,26 @@
 <header ng-include="'views/private-nav.html'"></header>
 <div class="jumbotron" >
-  <h1>dashboard</h1>
+  <h1>Dashboard</h1>
+  <h5>Here are yours pending deals</h5>
 </div>
-<div class="row marketing" ng-controller="ProductCtrl">
+<div class="row marketing">
   <table class='table table-striped table-bordered table-hover table-condensed' ng-controller="TransferCtrl">
+    <thead>
+      <tr>
+        <th>Product Offered (My product)</th>
+        <th>Product Required (Product I want)</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
     <tbody>
       <tr ng-repeat="(key, value) in userTransfers">
-        <td><span>{{value.id}}</span></td>
-        <td>{{value.description}}</td>
-        <td>{{value.active}}</td>
+        <td>{{value.product_offer_name}}</td>
+        <td>{{value.product_req_name}}</td>
+        <td>{{value.state}}</td>
         <td class="text-center">
-          <button type="button" class=" glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#myModal" ng-click="setTradeProduct(value)">
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-click="deleteTransfer(value)">
+              Cancel deal
           </button>
         </td>
       </tr>

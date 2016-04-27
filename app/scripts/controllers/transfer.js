@@ -8,13 +8,19 @@
 * Controller of the swaptricksApp
 */
 angular.module('swaptricksApp')
-.controller('TransferCtrl', function ($scope, $http, $location, $rootScope, Authtoken, $document) {
+.controller('TransferCtrl', function ($scope, $http, $location, $rootScope, Authtoken) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
-  console.log("Executing TransferCtrl");
+
+  //AUTHENTICATION Acces
+  $scope.inspectSession =  Authtoken.query(function() {
+    console.log('Acces');
+  }, function(error) {
+    window.location = "http://localhost:9000/#/?reload";
+  });
   // Trade Entyties
   $scope.userTransfers;
 
@@ -25,7 +31,6 @@ angular.module('swaptricksApp')
       console.log(responce);
       $scope.userTransfers = responce.data;
     }, function errorCallback(responce){
-      alert("Upps... someting went wrong, try again");
       console.log(responce);
     });
   }
@@ -59,7 +64,18 @@ angular.module('swaptricksApp')
     });
   }
 
+  // Delete transfer
+  $scope.deleteTransfer = function(pTransfer){
+    var url = `http://api.swapingzone.com:3000/transfers/${pTransfer.id}?token=${localStorage.token}`;
+    $http.delete(url).then(function successCallback(responce){
+      alert("Deal Broken");
+      console.log(responce);
+      window.location = "http://localhost:9000/#/dashboard#";
+    }, function errorCallback(responce){
+      alert("Upps... someting went wrong, try again");
+    });
+  }
+
   //Execute loadTransfer function
   $scope.chargeTransfers();
-
 });

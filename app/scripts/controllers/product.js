@@ -47,7 +47,7 @@ angular.module('swaptricksApp')
       console.log(response);
     });
   }
-
+  // Delete product from my ptoducts
   $scope.deleteProduct = function(product){
     alert("Delete "+ product.id);
     var url = `http://api.swapingzone.com:3000/products/${product.id}?token=${localStorage.token}`;
