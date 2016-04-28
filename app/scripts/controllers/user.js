@@ -24,33 +24,28 @@ angular.module('swaptricksApp')
   });
 
   //Entyties
-  $scope.items;
+  $scope.userLoged;
 
   //Loader function
   $scope.loadUser = function() {
-    alert("werty");
-    var url = `http://api.swapingzone.com:3000/users?token=${localStorage.token}&id=${localStorage.type}`
+    var url = `http://api.swapingzone.com:3000/users/${localStorage.type}?token=${localStorage.token}`
     $http.get(url)
     .then(function successCallback(response) {
       console.log(response);
-      $scope.items = response.data;
+      $scope.userLoged = response.data;
     }, function errorCallback(response) {
       console.log(response);
     });
   }
 
-
-  /////////////////////
-
-
   //////////////////////
   $scope.updateUser = function(user){
     var data = {
       "username": user.username,
-    "firstname": user.firstname,
-    "email": user.email,
-    "password": user.password
-                     };
+      "firstname": user.firstname,
+      "email": user.email,
+      "password": user.password
+    };
     //make the Call
     alert("entro");
     $http.put(`http://api.swapingzone.com:3000/users/${localStorage.type}?token=${localStorage.token}`, data).then(function successCallback(responce){
@@ -87,4 +82,8 @@ angular.module('swaptricksApp')
       }
     }
   }
+  $scope.loadUser();
+  angular.element(document).ready(function () {
+    // document.getElementById('msg').innerHTML = 'Hello';
+  });
 });
