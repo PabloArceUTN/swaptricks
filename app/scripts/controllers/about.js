@@ -15,11 +15,4 @@ angular.module('swaptricksApp')
     'Karma'
   ];
 
-  $scope.inspectSession =  Authtoken.query(function() {
-    console.log('Acces');
-  }, function(error) {
-    console.log(error);
-    window.location = "http://localhost:9000/#/?reload";
-  });
-
 });
