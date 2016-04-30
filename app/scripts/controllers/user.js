@@ -38,34 +38,51 @@ angular.module('swaptricksApp')
     });
   }
 
-  //////////////////////
-  $scope.updateUser = function(user){
+  // Update the user information
+  $scope.onlyInfo = function(){
     var data = {
-      "username": user.username,
-      "firstname": user.firstname,
-      "email": user.email,
-      "password": user.password
+      "username": $("#username").val(),
+      "firstname": $("#firstname").val(),
+      "email": $("#email").val()
     };
+    console.log(data);
+    $scope.updateUser(data);
+  }
+
+  // Update the user information
+  $scope.onlyPassword = function(){
+    var data = {
+      "password": $("#newpassword").val()
+    };
+    $scope.updateUser(data);
+    $("#newpassword").val("");
+  }
+
+  //Execute the Update:
+  $scope.updateUser = function(data){
+    console.log("Print data \n");
+    console.log(data);
     //make the Call
-    alert("entro");
     $http.put(`http://api.swapingzone.com:3000/users/${localStorage.type}?token=${localStorage.token}`, data).then(function successCallback(responce){
       alert("Congrats... now you are update your credentials :)");
       console.log(responce);
-
-
+      angular.element('#myModal').modal('hide');
+      $scope.loadUser();
     }, function errorCallback(responce){
-      WrongFeedback(responce);
       console.log(responce);
+      WrongFeedback(responce);
     });
   }
 
-  //Select an especific product
-
-  ///////////////////////
   //Execute loader function
+  $scope.loadUser();
 
   //Set products Entyties
   function WrongFeedback(responce) {
+    if (responce.status == 401) {
+      console.log("Unauthorized");
+      return;
+    }
     if(responce.status == -1 || responce.status == 500){
       alert("Problems... someting went wrong! try again later :(");
     }else{
@@ -73,17 +90,15 @@ angular.module('swaptricksApp')
         alert(responce.data.error);
       }else{
         var errors_stack="";
-        var i = 0;
         for (var insue_sent in responce.data) {
-          errors_stack += `Thi product can´t be processed. ${responce.data[i].error} \n`;
-          i++;
+          for (var i = 0; i < responce.data[insue_sent].length; i++)
+          errors_stack += insue_sent+" "+responce.data[insue_sent][i]+"\n";
         }
         alert(errors_stack);
       }
     }
   }
-  $scope.loadUser();
   angular.element(document).ready(function () {
-    // document.getElementById('msg').innerHTML = 'Hello';
+
   });
 });
