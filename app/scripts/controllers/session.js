@@ -17,6 +17,7 @@ angular.module('swaptricksApp')
 
   // User resgistration
   $scope.create = function(user){
+    uiTrick(true);
     var data = {"username": user.username,
     "password": user.password,
     "firstname": user.firstname,
@@ -26,25 +27,29 @@ angular.module('swaptricksApp')
       alert("Congrats... now you are part of Swapingtricks :)");
       console.log(responce);
       $location.path('/');
+      uiTrick(false);
     }, function errorCallback(responce){
       WrongFeedback(responce);
       console.log(responce);
+      uiTrick(false);
     });
-
   }
 
   // User login
   $scope.login = function(user){
     var data = {"username": user.username, "password": user.password};
+    uiTrick(true);
     //make the Call
     $http.post('http://api.swapingzone.com:3000/login', data).then(function successCallback(responce){
       console.log(responce);
       localStorage.token = responce.data.token;
       localStorage.type = responce.data.user;
       window.location = "http://localhost:9000/#/dashboard";
+      uiTrick(false);
     }, function errorCallback(responce){
       WrongFeedback(responce);
       console.log(responce);
+      uiTrick(false);
     });
   }
 
@@ -87,5 +92,18 @@ angular.module('swaptricksApp')
     }
   }
 
-
+  //Show/Hide & enabled or disabled the action button and the spinner gif
+  function uiTrick(init) {
+    if (init) {
+      $("#logbutton").prop( "disabled", true);
+      $("#logbutton").hide();
+      $("#abort").hide();
+      $("#spin").show();
+    }else {
+      $("#logbutton").prop( "disabled", false);
+      $("#logbutton").show();
+      $("#abort").show();
+      $("#spin").hide();
+    }
+  }
 });
